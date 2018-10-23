@@ -1,20 +1,21 @@
-#include "unalias.hpp"
+#include "include/unalias.hpp"
+#include <type_traits>
 #include <iostream>
 
-using int0 = UNALIAS(int);
-using int1 = UNALIAS(int);
+using new_int = UNALIAS(int);
+using newer_int = UNALIAS(int);
 
-struct dummy {};
-using dummy0 = UNALIAS(dummy);
-using dummy1 = UNALIAS(dummy);
+struct Foo {};
+using new_Foo = UNALIAS(Foo);
+using newer_Foo = UNALIAS(Foo);
 
 int main()
 {
-  std::cout << std::is_same_v<int, int0> << std::endl;
-  std::cout << std::is_same_v<int0, int1> << std::endl;
+  std::cout << std::is_same_v<int, new_int> << std::endl;
+  std::cout << std::is_same_v<new_int, newer_int> << std::endl;
 
-  std::cout << std::is_same_v<dummy, dummy0> << std::endl;
-  std::cout << std::is_same_v<dummy0, dummy1> << std::endl;
+  std::cout << std::is_same_v<Foo, new_Foo> << std::endl;
+  std::cout << std::is_same_v<new_Foo, newer_Foo> << std::endl;
 
   return 0;
 }
